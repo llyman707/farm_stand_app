@@ -11,14 +11,15 @@
     <h1>Edit Product</h1>
     <form action="/products/<%=product._id%>?_method=PUT" method="POST">
         <label for="name">Product Name</label>
-        <input type="text" name="name" id="name" placeholder="product name" value="<%=product.name%>">
+        <input type="text" name="name" id="name" placeholder="product name">
         <label for="price">Price (Unit)</label>
-        <input type="number" step="any" id="price" name="price" placeholder="price" value="<%= product.price %>">
+        <input type="number" step="any" id="price" name="price" placeholder="price">
         <label for="category">Select Category</label>
         <select name="category" id="category">
-            <option value="fruit">fruit</option>
-            <option value="vegetable">vegetable</option>
-            <option value="dairy">dairy</option>
+            <% for(let category of categories){ %>
+                <option value="<%=category%>" <%=product.category===category ? 'selected' : '' %>><%=category%>
+                </option>
+                <% } %>
         </select>
         <button>Submit</button>
     </form>
